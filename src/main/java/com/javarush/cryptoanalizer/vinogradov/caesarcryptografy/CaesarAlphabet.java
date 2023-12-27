@@ -27,7 +27,7 @@ public class CaesarAlphabet {
     }
 
     public Character getCharByIndex(int index) {
-        // тут было index < 0 ||
+        // тут было index < 0 ||  подумай как работать над деншифровкой с отнятием позиции на ключ
         if (index > alphabet.size()) {
             throw new CaesarWorkerException("Input valid index. Your index - " + index + "Your index < 0 || > " + alphabet.size());
         }

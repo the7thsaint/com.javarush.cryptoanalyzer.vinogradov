@@ -18,11 +18,9 @@ public class CaesarCipher {
     private String chipher(String currentText, int key) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < currentText.length(); i++) {
-            //не находит индекс в хешмапе хуй знает смотри завтра
             Character currentTextChar = Character.toLowerCase(currentText.charAt(i));
-            //Character currentTextChar = toLower(currentText.charAt(i));
             int currentTextCharIndex = alphabet.getCharIndex(currentTextChar);
-            int resultTextCharIndex = (currentTextCharIndex + key) % alphabet.getAlphabetSize();
+            int resultTextCharIndex = (alphabet.getAlphabetSize() + (currentTextCharIndex + key)) % alphabet.getAlphabetSize();
             stringBuilder.append(alphabet.getCharByIndex(resultTextCharIndex));
         }
         return stringBuilder.toString();
