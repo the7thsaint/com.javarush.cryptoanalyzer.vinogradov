@@ -1,22 +1,21 @@
 package com.javarush.cryptoanalizer.vinogradov.filesworker;
 
 import com.javarush.cryptoanalizer.vinogradov.filesworker.exception.FileWorkerException;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FilesOperations {
+    private static final StandardOpenOption[] FILE_WRITE_OPTIONS = {StandardOpenOption.WRITE, StandardOpenOption.CREATE_NEW, StandardOpenOption.APPEND};
 
     public List<String> readFile(String fileName) {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
+        try (BufferedReader bufferedReader = Files.newBufferedReader(Path.of(fileName))) {
             List<String> readedFile = new ArrayList<>();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -29,7 +28,7 @@ public class FilesOperations {
     }
 
     public void writeFile(String fileName, List<String> content) {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName))) {
+        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(Path.of(fileName), FILE_WRITE_OPTIONS) ) {
             for (String value : content) {
                 bufferedWriter.write(value);
             }

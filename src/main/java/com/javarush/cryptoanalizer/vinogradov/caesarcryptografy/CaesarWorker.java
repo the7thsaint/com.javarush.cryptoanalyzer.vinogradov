@@ -33,10 +33,10 @@ public class CaesarWorker {
         filenameValidator.validateForWriting(writableFile);
 
         List<String> readableStrings = filesOperations.readFile(readableFile);
-        List<String> result1 = new ArrayList<>();
+        List<String> decryptingData = new ArrayList<>();
         for(String result : readableStrings){
-            result1.add(caesarCipher.decrypt(result,key));
+            decryptingData.add(caesarCipher.decrypt(result,key));
         }
-        filesOperations.writeFile(writableFile,result1);
+        filesOperations.writeFile(writableFile,decryptingData);
     }
 }

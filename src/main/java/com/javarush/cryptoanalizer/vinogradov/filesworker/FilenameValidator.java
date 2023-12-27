@@ -33,10 +33,6 @@ public class FilenameValidator {
                 throw new FileWorkerException("This file is directory");
             }
         }
-
-//        if (!Files.isWritable(path)) {
-//            throw new FileWorkerException("Cannot writing to this file");
-//        }
     }
 
     public void validateForReading(String filename) {
