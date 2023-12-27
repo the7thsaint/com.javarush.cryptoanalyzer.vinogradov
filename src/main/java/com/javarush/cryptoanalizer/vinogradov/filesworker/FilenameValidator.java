@@ -34,9 +34,9 @@ public class FilenameValidator {
             }
         }
 
-        if (!Files.isWritable(path)) {
-            throw new FileWorkerException("Cannot writing to this file");
-        }
+//        if (!Files.isWritable(path)) {
+//            throw new FileWorkerException("Cannot writing to this file");
+//        }
     }
 
     public void validateForReading(String filename) {

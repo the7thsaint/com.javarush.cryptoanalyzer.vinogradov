@@ -16,7 +16,7 @@ import java.util.List;
 public class FilesOperations {
 
     public List<String> readFile(String fileName) {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(Path.of(fileName).toUri())))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             List<String> readedFile = new ArrayList<>();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -29,7 +29,7 @@ public class FilesOperations {
     }
 
     public void writeFile(String fileName, List<String> content) {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File(Path.of(fileName).toUri())))) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName))) {
             for (String value : content) {
                 bufferedWriter.write(value);
             }
