@@ -68,7 +68,7 @@ public class UserUI {
     private void encryptingCommand() {
         System.out.println("Enter filename which contains original text:");
         String originalText = scanner.nextLine();
-        System.out.println("Enter file name when you want to save encrypting file:");
+        System.out.println("Enter file name where you want to save encrypting file:");
         String encryptFile = scanner.nextLine();
         System.out.println("Enter key for Caesar cipher: ");
         int key = readInt();
@@ -85,7 +85,7 @@ public class UserUI {
     private void decryptingCommand() {
         System.out.println("Enter filename which contains encrypting text: ");
         String encryptFile = scanner.nextLine();
-        System.out.println("Enter file name when you want to save decrypting file: ");
+        System.out.println("Enter file name where you want to save decrypting file: ");
         String originalText = scanner.nextLine();
         System.out.println("Enter key for Caesar cipher: ");
         int key = readInt();
@@ -99,14 +99,19 @@ public class UserUI {
         }
     }
 
-    // НАПИСАТЬ ТУТ ИСКЛЮЧЕНИЯ И ОБРАБОТАТЬ ОШИБКИ!!!!!!!
+
     private void bruteForceCommand() {
         System.out.println("Enter filename which contains encrypting text: ");
         String encryptFile = scanner.nextLine();
         System.out.println("Enter file name when you want to save decrypting file: ");
         String originalText = scanner.nextLine();
         System.out.println("Brute force decrypt starting. Please check information in console!");
-        caesarBruteForce.bruteForceDecrypt(encryptFile, originalText);
+        try{
+        caesarBruteForce.bruteForceDecrypt(encryptFile, originalText);}
+        catch (CaesarWorkerException | FileWorkerException ex){
+            System.err.println("Error! Reason: " + ex.getMessage());
+            ex.printStackTrace();
+        }
     }
 
     private void exitCommand() {
