@@ -15,7 +15,7 @@ public class CaesarAlphabet {
     private static final Character[] RU_WITH_SYMBOLS_ALPHABET = {
             'а', 'б', 'в', 'г', 'д', 'е','ё', 'ж', 'з',
             'и','й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
-            'ъ', 'ы', 'ь', 'э','ю', 'я', '.', ',', '«', '»', '"', '\'', ':', '!', '?', ' '
+            'ъ', 'ы', 'ь', 'э','ю', 'я', '.', ',', '«', '»', '"', '\'', ':', '!', '?', ' ', '\n'
     };
 
     public CaesarAlphabet() {
@@ -27,7 +27,6 @@ public class CaesarAlphabet {
     }
 
     public Character getCharByIndex(int index) {
-        // тут было index < 0 ||  подумай как работать над деншифровкой с отнятием позиции на ключ
         if (index > alphabet.size()) {
             throw new CaesarWorkerException("Input valid index. Your index - " + index + "Your index < 0 || > " + alphabet.size());
         }

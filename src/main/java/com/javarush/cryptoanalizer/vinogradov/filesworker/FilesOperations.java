@@ -28,7 +28,7 @@ public class FilesOperations {
     }
 
     public void writeFile(String fileName, List<String> content) {
-        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(Path.of(fileName), FILE_WRITE_OPTIONS) ) {
+        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(Path.of(fileName)) ) {
             for (String value : content) {
                 bufferedWriter.write(value);
             }

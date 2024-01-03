@@ -10,6 +10,7 @@ public class CaesarWorker {
     private CaesarCipher caesarCipher;
     private FilenameValidator filenameValidator;
     private FilesOperations filesOperations;
+
     public CaesarWorker(){
         this.caesarCipher = new CaesarCipher(new CaesarAlphabet());
         this.filenameValidator = new FilenameValidator();
@@ -21,11 +22,11 @@ public class CaesarWorker {
         filenameValidator.validateForWriting(writableFile);
 
         List<String> readableStrings = filesOperations.readFile(readableFile);
-        List<String> result1 = new ArrayList<>();
+        List<String> dataForEncrypt = new ArrayList<>();
         for(String result : readableStrings){
-            result1.add(caesarCipher.encrypt(result,key));
+            dataForEncrypt.add(caesarCipher.encrypt(result,key));
         }
-        filesOperations.writeFile(writableFile,result1);
+        filesOperations.writeFile(writableFile,dataForEncrypt);
     }
 
     public void decrypt(String readableFile, String writableFile, int key){
