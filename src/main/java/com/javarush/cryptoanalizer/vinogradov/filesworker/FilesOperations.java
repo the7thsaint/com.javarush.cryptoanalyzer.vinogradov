@@ -8,12 +8,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FilesOperations {
-    private static final StandardOpenOption[] FILE_WRITE_OPTIONS = {StandardOpenOption.WRITE, StandardOpenOption.CREATE_NEW, StandardOpenOption.APPEND};
+
 
     public List<String> readFile(String fileName) {
         try (BufferedReader bufferedReader = Files.newBufferedReader(Path.of(fileName))) {
