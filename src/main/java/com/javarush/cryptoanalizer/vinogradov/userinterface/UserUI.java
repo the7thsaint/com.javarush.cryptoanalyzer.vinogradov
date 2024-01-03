@@ -24,7 +24,7 @@ public class UserUI {
         scanner = new Scanner(System.in);
     }
 
-    public void startingApplication(){
+    public void startingApplication() {
         showApplicationMenu();
         processCommand(getUserCommand());
     }
@@ -38,8 +38,8 @@ public class UserUI {
         }
     }
 
-    private void processCommand(UserCommands userCommands){
-        switch (userCommands){
+    private void processCommand(UserCommands userCommands) {
+        switch (userCommands) {
             case EXIT -> exitCommand();
             case ENCRYPT -> encryptingCommand();
             case DECRYPT -> decryptingCommand();
@@ -47,17 +47,17 @@ public class UserUI {
         }
     }
 
-    private UserCommands getUserCommand(){
+    private UserCommands getUserCommand() {
         boolean tryAgain = false;
-        do{
+        do {
             try {
                 int numberOfCommand = readInt();
                 return UserCommands.getCommandByNumber(numberOfCommand);
-            } catch (IllegalArgumentException exception){
+            } catch (IllegalArgumentException exception) {
                 System.out.println("Number of operation is wrong. \n Reason: " + exception.getMessage());
                 System.out.println("Write 'Again' to trying more");
                 String userInput = scanner.nextLine();
-                if(USER_AGAIN_PHRASE.equalsIgnoreCase(userInput)){
+                if (USER_AGAIN_PHRASE.equalsIgnoreCase(userInput)) {
                     tryAgain = true;
                 }
             }
@@ -65,7 +65,7 @@ public class UserUI {
         return UserCommands.EXIT;
     }
 
-    private void encryptingCommand(){
+    private void encryptingCommand() {
         System.out.println("Enter filename which contains original text:");
         String originalText = scanner.nextLine();
         System.out.println("Enter file name when you want to save encrypting file:");
@@ -76,13 +76,13 @@ public class UserUI {
         try {
             caesarWorker.encrypt(originalText, encryptFile, key);
             System.out.println("Successful encrypt. Check your file! Address - " + encryptFile);
-        } catch (FileWorkerException | CaesarWorkerException ex){
+        } catch (FileWorkerException | CaesarWorkerException ex) {
             System.err.println("Error! Reason: " + ex.getMessage());
             ex.printStackTrace();
         }
     }
 
-    private void decryptingCommand(){
+    private void decryptingCommand() {
         System.out.println("Enter filename which contains encrypting text: ");
         String encryptFile = scanner.nextLine();
         System.out.println("Enter file name when you want to save decrypting file: ");
@@ -93,14 +93,14 @@ public class UserUI {
         try {
             caesarWorker.decrypt(encryptFile, originalText, key);
             System.out.println("Successful decrypt. Check your file! Address - " + originalText);
-        } catch (CaesarWorkerException | FileWorkerException ex){
+        } catch (CaesarWorkerException | FileWorkerException ex) {
             System.err.println("Error! Reason: " + ex.getMessage());
             ex.printStackTrace();
         }
     }
 
     // НАПИСАТЬ ТУТ ИСКЛЮЧЕНИЯ И ОБРАБОТАТЬ ОШИБКИ!!!!!!!
-    private void bruteForceCommand(){
+    private void bruteForceCommand() {
         System.out.println("Enter filename which contains encrypting text: ");
         String encryptFile = scanner.nextLine();
         System.out.println("Enter file name when you want to save decrypting file: ");
@@ -109,10 +109,9 @@ public class UserUI {
         caesarBruteForce.bruteForceDecrypt(encryptFile, originalText);
     }
 
-    private void exitCommand(){
+    private void exitCommand() {
         return;
     }
-
 
 
     private int readInt() {

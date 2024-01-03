@@ -1,6 +1,7 @@
 package com.javarush.cryptoanalizer.vinogradov.filesworker;
 
 import com.javarush.cryptoanalizer.vinogradov.filesworker.exception.FileWorkerException;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -28,7 +29,7 @@ public class FilesOperations {
     }
 
     public void writeFile(String fileName, List<String> content) {
-        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(Path.of(fileName)) ) {
+        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(Path.of(fileName))) {
             for (String value : content) {
                 bufferedWriter.write(value);
             }

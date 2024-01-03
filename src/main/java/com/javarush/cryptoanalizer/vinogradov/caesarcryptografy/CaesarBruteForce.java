@@ -27,7 +27,7 @@ public class CaesarBruteForce {
         filenameValidator.validateForWriting(decryptingFilename);
 
         StringBuilder stringBuilder = new StringBuilder();
-        try{
+        try {
             List<String> readableStrings = filesOperations.readFile(encryptFilename);
             for (String textString : readableStrings) {
                 stringBuilder.append(textString);
@@ -42,7 +42,7 @@ public class CaesarBruteForce {
                     break;
                 }
             }
-        } catch (FileWorkerException | CaesarWorkerException ex){
+        } catch (FileWorkerException | CaesarWorkerException ex) {
             throw new RuntimeException(ex.getMessage(), ex);
         }
 
