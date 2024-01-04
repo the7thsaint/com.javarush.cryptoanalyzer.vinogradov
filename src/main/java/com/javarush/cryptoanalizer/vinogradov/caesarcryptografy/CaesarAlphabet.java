@@ -12,11 +12,15 @@ public class CaesarAlphabet {
 
     private final List<Character> alphabet;
     private final Map<Character, Integer> symbolsIndexes;
-    private static final Character[] RU_WITH_SYMBOLS_ALPHABET = {
-            'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з',
-            'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
-            'ъ', 'ы', 'ь', 'э', 'ю', 'я', '.', ',', '«', '»', '"', '\'', ':', '!', '?', ' ', '\n'
-    };
+    private static final Character[] RU_WITH_SYMBOLS_ALPHABET;
+
+    static {
+        RU_WITH_SYMBOLS_ALPHABET = new Character[]{
+                'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з',
+                'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
+                'ъ', 'ы', 'ь', 'э', 'ю', 'я', '.', ',', '«', '»', '"', '\'', ':', '!', '?', ' ', '\n'
+        };
+    }
 
     public CaesarAlphabet() {
         alphabet = new ArrayList<>(Arrays.asList(RU_WITH_SYMBOLS_ALPHABET));

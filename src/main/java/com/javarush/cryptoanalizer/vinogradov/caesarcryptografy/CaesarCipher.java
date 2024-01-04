@@ -8,14 +8,14 @@ public class CaesarCipher {
     }
 
     public String encrypt(String currentText, int key) {
-        return chipher(currentText, key);
+        return cipher(currentText, key);
     }
 
     public String decrypt(String currentText, int key) {
-        return chipher(currentText, -key);
+        return cipher(currentText, -key);
     }
 
-    private String chipher(String currentText, int key) {
+    private String cipher(String currentText, int key) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < currentText.length(); i++) {
             Character currentTextChar = Character.toLowerCase(currentText.charAt(i));

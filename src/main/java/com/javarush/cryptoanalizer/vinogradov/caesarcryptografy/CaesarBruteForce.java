@@ -14,6 +14,10 @@ public class CaesarBruteForce {
     private final FilenameValidator filenameValidator;
     private final FilesOperations filesOperations;
     private final CaesarAlphabet alphabet;
+    private static final String RU_WORDS_LIBRARY = "src/main/java/com/javarush/cryptoanalizer/vinogradov/caesarcryptografy/wordslibrary/RussianWordsLibrary.txt";
+    private static final String USER_POSITIVE_ANSWER = "yes";
+    private static final String USER_NEGATIVE_ANSWER = "no";
+
 
     public CaesarBruteForce() {
         this.alphabet = new CaesarAlphabet();
@@ -38,7 +42,7 @@ public class CaesarBruteForce {
                     List<String> resultOfDecrypt = new ArrayList<>();
                     resultOfDecrypt.add(decryptString);
                     filesOperations.writeFile(decryptingFilename, resultOfDecrypt);
-                    System.out.printf("User text is correctly decrypted with key: %d \n Text written to the file - %s", i, decryptingFilename);
+                    System.out.printf("User text is correctly decrypted with key: %d \nText written to the file - %s", i, decryptingFilename);
                     break;
                 }
             }
@@ -47,27 +51,44 @@ public class CaesarBruteForce {
         }
 
     }
+    // || bruteForceDecryptText.matches("^[А-Яа-яё]+"
+    // || (bruteForceDecryptText.contains(" ") || bruteForceDecryptText.contains(": ") || bruteForceDecryptText.contains("; ") || bruteForceDecryptText.contains(", ") || bruteForceDecryptText.contains(". ") || bruteForceDecryptText.contains("? ") || bruteForceDecryptText.contains("! ")
 
     private boolean userValidateText(String bruteForceDecryptText) {
         Scanner scanner = new Scanner(System.in);
         boolean successValidate = false;
-        if (bruteForceDecryptText.contains(" ") || bruteForceDecryptText.contains(": ") || bruteForceDecryptText.contains("; ") || bruteForceDecryptText.contains(", ") || bruteForceDecryptText.contains(". ") || bruteForceDecryptText.contains("? ") || bruteForceDecryptText.contains("! ")) {
+        if ((libraryContains(bruteForceDecryptText))) {
             successValidate = true;
         }
 
         while (successValidate) {
-            System.out.printf("Decrypted text:  %s \n", bruteForceDecryptText);
+            System.out.printf("Decrypted text: %s \n", bruteForceDecryptText);
             System.out.println("This text is correctly decrypted? Input YES/NO");
             String userAnswer = scanner.nextLine();
-            if (userAnswer.equalsIgnoreCase("yes")) {
+            if (userAnswer.equalsIgnoreCase(USER_POSITIVE_ANSWER)) {
                 return true;
-            } else if (userAnswer.equalsIgnoreCase("no")) {
+            } else if (userAnswer.equalsIgnoreCase(USER_NEGATIVE_ANSWER)) {
                 return false;
             } else {
                 System.out.println("Incorrect input. Correct input - Yes or No");
             }
         }
         return false;
+    }
+
+    private boolean libraryContains(String bruteForceDecryptText) {
+        String[] decryptWords = bruteForceDecryptText.replaceAll("[^A-Za-zА-Яа-яё\\s]+", "").split("\\s+");
+        int count = 0;
+        for (String splitString : decryptWords) {
+            if (filesOperations.readFile(RU_WORDS_LIBRARY).contains(splitString)) {
+                count++;
+            }
+        }
+        if (count >= decryptWords.length * 0.8) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

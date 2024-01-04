@@ -1,5 +1,6 @@
 package com.javarush.cryptoanalizer.vinogradov.applicationstarter;
 
+
 import com.javarush.cryptoanalizer.vinogradov.userinterface.UserUI;
 
 public class ApplicationWorker {
@@ -7,4 +8,5 @@ public class ApplicationWorker {
         UserUI userUI = new UserUI();
         userUI.startingApplication();
     }
+
 }
