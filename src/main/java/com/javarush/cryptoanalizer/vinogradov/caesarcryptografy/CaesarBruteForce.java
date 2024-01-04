@@ -51,8 +51,6 @@ public class CaesarBruteForce {
         }
 
     }
-    // || bruteForceDecryptText.matches("^[А-Яа-яё]+"
-    // || (bruteForceDecryptText.contains(" ") || bruteForceDecryptText.contains(": ") || bruteForceDecryptText.contains("; ") || bruteForceDecryptText.contains(", ") || bruteForceDecryptText.contains(". ") || bruteForceDecryptText.contains("? ") || bruteForceDecryptText.contains("! ")
 
     private boolean userValidateText(String bruteForceDecryptText) {
         Scanner scanner = new Scanner(System.in);
@@ -62,7 +60,7 @@ public class CaesarBruteForce {
         }
 
         while (successValidate) {
-            System.out.printf("Decrypted text: %s \n", bruteForceDecryptText);
+            System.out.printf("Decrypted text:\n%s", bruteForceDecryptText);
             System.out.println("This text is correctly decrypted? Input YES/NO");
             String userAnswer = scanner.nextLine();
             if (userAnswer.equalsIgnoreCase(USER_POSITIVE_ANSWER)) {
@@ -77,10 +75,10 @@ public class CaesarBruteForce {
     }
 
     private boolean libraryContains(String bruteForceDecryptText) {
-        String[] decryptWords = bruteForceDecryptText.replaceAll("[^A-Za-zА-Яа-яё\\s]+", "").split("\\s+");
+        String[] decryptWords = bruteForceDecryptText.replaceAll("[^A-Za-zА-Яа-яё.\\s]+", "").split("\\s+");
         int count = 0;
         for (String splitString : decryptWords) {
-            if (filesOperations.readFile(RU_WORDS_LIBRARY).contains(splitString)) {
+            if (filesOperations.readLibraryFile(RU_WORDS_LIBRARY).contains(splitString)) {
                 count++;
             }
         }
