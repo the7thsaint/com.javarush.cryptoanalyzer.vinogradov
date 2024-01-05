@@ -35,7 +35,6 @@ public class FilesOperations {
         try (BufferedReader bufferedReader = Files.newBufferedReader(Path.of(fileName))) {
             List<String> readedFile = new ArrayList<>();
             String line;
-            bufferedReader.read();
             while ((line = bufferedReader.readLine()) != null) {
                 readedFile.add(line);
             }

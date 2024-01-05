@@ -94,7 +94,7 @@ public class UserUI {
             caesarWorker.decrypt(encryptFile, originalText, key);
             System.out.println("Successful decrypt. Check your file! Address - " + originalText);
         } catch (CaesarWorkerException | FileWorkerException ex) {
-            System.err.println("Error! Reason: " + ex.getMessage());
+            System.err.println("Error!" + ex.getMessage());
             ex.printStackTrace();
         }
     }
@@ -109,7 +109,7 @@ public class UserUI {
         try{
         caesarBruteForce.bruteForceDecrypt(encryptFile, originalText);}
         catch (CaesarWorkerException | FileWorkerException ex){
-            System.err.println("Error! Reason: " + ex.getMessage());
+            System.err.println("Error!" + ex.getMessage());
             ex.printStackTrace();
         }
     }
