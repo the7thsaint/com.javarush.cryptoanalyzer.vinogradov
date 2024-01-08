@@ -1,5 +1,6 @@
 package com.javarush.cryptoanalizer.vinogradov.caesarcryptografy;
 
+
 public class CaesarCipher {
     private final CaesarAlphabet alphabet;
 

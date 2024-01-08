@@ -14,7 +14,6 @@ import java.util.List;
 
 public class FilesOperations {
 
-
     public List<String> readFile(String fileName) {
         try (FileReader reader = new FileReader(fileName);
              BufferedReader bufferedReader = new BufferedReader(reader)) {

@@ -15,11 +15,13 @@ public class CaesarAlphabet {
     private static final Character[] RU_WITH_SYMBOLS_ALPHABET;
 
     static {
+
         RU_WITH_SYMBOLS_ALPHABET = new Character[]{
                 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з',
                 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
                 'ъ', 'ы', 'ь', 'э', 'ю', 'я', '.', ',', '«', '»', '"', '\'', ':', '!', '?', ' ', '\n'
         };
+
     }
 
     public CaesarAlphabet() {
@@ -47,6 +49,5 @@ public class CaesarAlphabet {
     public int getAlphabetSize() {
         return symbolsIndexes.size();
     }
-
 
 }
