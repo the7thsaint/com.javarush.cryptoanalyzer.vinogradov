@@ -1,11 +1,13 @@
-package com.javarush.cryptoanalizer.vinogradov.filesworker;
+package com.javarush.cryptoanalizer.vinogradov.filesWorker;
 
-import com.javarush.cryptoanalizer.vinogradov.filesworker.exception.FileWorkerException;
+import com.javarush.cryptoanalizer.vinogradov.filesWorker.exception.FileWorkerException;
 
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.util.List;
+
+import static com.javarush.cryptoanalizer.vinogradov.constants.PhraseConstants.*;
 
 public class FilenameValidator {
 
@@ -14,7 +16,7 @@ public class FilenameValidator {
     public Path validatePath(String fileName) {
         for (String pathPart : fileName.split(System.getProperty("file.separator"))) {
             if (FORBIDDEN_DIRS_FILES.contains(pathPart)) {
-                throw new FileWorkerException("Used incorrect files " + pathPart);
+                throw new FileWorkerException(USE_INCORRECT_FILES + pathPart);
             }
         }
 
@@ -22,7 +24,7 @@ public class FilenameValidator {
             Path path = Path.of(fileName);
             return path;
         } catch (InvalidPathException e) {
-            throw new FileWorkerException("Invalid path: " + e.getMessage(), e);
+            throw new FileWorkerException(INVALID_PATH + e.getMessage(), e);
         }
     }
 
@@ -30,7 +32,7 @@ public class FilenameValidator {
         Path path = validatePath(filename);
         if (Files.exists(path)) {
             if (Files.isDirectory(path)) {
-                throw new FileWorkerException("This file is directory");
+                throw new FileWorkerException(NOT_A_FILE);
             }
         }
     }
@@ -39,15 +41,15 @@ public class FilenameValidator {
         Path path = validatePath(filename);
 
         if (Files.notExists(path)) {
-            throw new FileWorkerException("File doesn't exists");
+            throw new FileWorkerException(FILE_DOESNT_EXIST);
         }
 
         if (Files.isDirectory(path)) {
-            throw new FileWorkerException("This file is directory");
+            throw new FileWorkerException(NOT_A_FILE);
         }
 
         if (!Files.isReadable(path)) {
-            throw new FileWorkerException("Cannot read to this file");
+            throw new FileWorkerException(UNREADBLE_FILE);
         }
     }
 

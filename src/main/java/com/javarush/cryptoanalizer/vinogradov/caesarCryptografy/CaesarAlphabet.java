@@ -1,12 +1,14 @@
-package com.javarush.cryptoanalizer.vinogradov.caesarcryptografy;
+package com.javarush.cryptoanalizer.vinogradov.caesarCryptografy;
 
-import com.javarush.cryptoanalizer.vinogradov.caesarcryptografy.exception.CaesarWorkerException;
+import com.javarush.cryptoanalizer.vinogradov.caesarCryptografy.exception.CaesarWorkerException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.javarush.cryptoanalizer.vinogradov.constants.PhraseConstants.*;
 
 public class CaesarAlphabet {
 
@@ -34,14 +36,14 @@ public class CaesarAlphabet {
 
     public Character getCharByIndex(int index) {
         if (index > alphabet.size()) {
-            throw new CaesarWorkerException("Input valid index. Your index - " + index + "Your index < 0 || > " + alphabet.size());
+            throw new CaesarWorkerException(INVALID_USER_INPUT_INDEX + index + SHOW_USER_INDEX + alphabet.size());
         }
         return alphabet.get(index);
     }
 
     public int getCharIndex(Character character) {
         if (!symbolsIndexes.containsKey(character)) {
-            throw new CaesarWorkerException("Invalid character. Your char - " + character);
+            throw new CaesarWorkerException(INVALID_CHARACTER_MESSAGE + character);
         }
         return symbolsIndexes.get(character);
     }

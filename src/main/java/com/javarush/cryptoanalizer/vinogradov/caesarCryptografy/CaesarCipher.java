@@ -1,4 +1,4 @@
-package com.javarush.cryptoanalizer.vinogradov.caesarcryptografy;
+package com.javarush.cryptoanalizer.vinogradov.caesarCryptografy;
 
 
 public class CaesarCipher {
