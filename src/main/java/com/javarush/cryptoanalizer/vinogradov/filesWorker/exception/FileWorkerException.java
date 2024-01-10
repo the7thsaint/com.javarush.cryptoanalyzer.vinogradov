@@ -1,4 +1,4 @@
-package com.javarush.cryptoanalizer.vinogradov.filesworker.exception;
+package com.javarush.cryptoanalizer.vinogradov.filesWorker.exception;
 
 public class FileWorkerException extends RuntimeException {
 

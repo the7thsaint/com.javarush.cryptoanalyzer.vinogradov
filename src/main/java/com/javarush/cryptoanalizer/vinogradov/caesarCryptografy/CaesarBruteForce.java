@@ -1,22 +1,22 @@
-package com.javarush.cryptoanalizer.vinogradov.caesarcryptografy;
+package com.javarush.cryptoanalizer.vinogradov.caesarCryptografy;
 
-import com.javarush.cryptoanalizer.vinogradov.caesarcryptografy.exception.CaesarWorkerException;
-import com.javarush.cryptoanalizer.vinogradov.filesworker.FilenameValidator;
-import com.javarush.cryptoanalizer.vinogradov.filesworker.FilesOperations;
-import com.javarush.cryptoanalizer.vinogradov.filesworker.exception.FileWorkerException;
+import com.javarush.cryptoanalizer.vinogradov.caesarCryptografy.exception.CaesarWorkerException;
+import com.javarush.cryptoanalizer.vinogradov.filesWorker.FilenameValidator;
+import com.javarush.cryptoanalizer.vinogradov.filesWorker.FilesOperations;
+import com.javarush.cryptoanalizer.vinogradov.filesWorker.exception.FileWorkerException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import static com.javarush.cryptoanalizer.vinogradov.constants.PhraseConstants.*;
 
 public class CaesarBruteForce {
     private final CaesarCipher caesarCipher;
     private final FilenameValidator filenameValidator;
     private final FilesOperations filesOperations;
     private final CaesarAlphabet alphabet;
-    private static final String RU_WORDS_LIBRARY = "src/main/java/com/javarush/cryptoanalizer/vinogradov/caesarcryptografy/wordslibrary/RussianWordsLibrary.txt";
-    private static final String USER_POSITIVE_ANSWER = "yes";
-    private static final String USER_NEGATIVE_ANSWER = "no";
+
 
 
     public CaesarBruteForce() {
@@ -42,7 +42,7 @@ public class CaesarBruteForce {
                     List<String> resultOfDecrypt = new ArrayList<>();
                     resultOfDecrypt.add(decryptString);
                     filesOperations.writeFile(decryptingFilename, resultOfDecrypt);
-                    System.out.printf("User text is correctly decrypted with key: %d \nText written to the file - %s", i, decryptingFilename);
+                    System.out.printf(CORRECT_BRUTE_FORCE_DECRYPT, i, decryptingFilename);
                     break;
                 }
             }
@@ -60,15 +60,15 @@ public class CaesarBruteForce {
         }
 
         while (successValidate) {
-            System.out.printf("Decrypted text:\n%s", bruteForceDecryptText);
-            System.out.println("This text is correctly decrypted? Input YES/NO");
+            System.out.printf(SHOW_DECRYPTED_TEXT, bruteForceDecryptText);
+            System.out.println(SHOW_ANSWER_FOR_USER);
             String userAnswer = scanner.nextLine();
             if (userAnswer.equalsIgnoreCase(USER_POSITIVE_ANSWER)) {
                 return true;
             } else if (userAnswer.equalsIgnoreCase(USER_NEGATIVE_ANSWER)) {
                 return false;
             } else {
-                System.out.println("Incorrect input. Correct input - Yes or No");
+                System.out.println(INCORRECT_USER_ANSWER_FOR_BRUTE_FORCE_DECRYPT);
             }
         }
         return false;

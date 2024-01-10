@@ -1,22 +1,18 @@
-package com.javarush.cryptoanalizer.vinogradov.userinterface;
+package com.javarush.cryptoanalizer.vinogradov.userInterface;
 
-import com.javarush.cryptoanalizer.vinogradov.caesarcryptografy.CaesarBruteForce;
-import com.javarush.cryptoanalizer.vinogradov.caesarcryptografy.CaesarWorker;
-import com.javarush.cryptoanalizer.vinogradov.caesarcryptografy.exception.CaesarWorkerException;
-import com.javarush.cryptoanalizer.vinogradov.filesworker.exception.FileWorkerException;
+import com.javarush.cryptoanalizer.vinogradov.caesarCryptografy.CaesarBruteForce;
+import com.javarush.cryptoanalizer.vinogradov.caesarCryptografy.CaesarWorker;
+import com.javarush.cryptoanalizer.vinogradov.caesarCryptografy.exception.CaesarWorkerException;
+import com.javarush.cryptoanalizer.vinogradov.filesWorker.exception.FileWorkerException;
 
 import java.util.Scanner;
+
+import static com.javarush.cryptoanalizer.vinogradov.constants.PhraseConstants.*;
 
 public class UserUI {
     private final CaesarWorker caesarWorker;
     private final Scanner scanner;
     private final CaesarBruteForce caesarBruteForce;
-    private final static String WELCOME_MESSAGE = """
-            **************************************************************
-            *------------Welcome to the caesar cipher program------------*
-            **************************************************************
-            """;
-    private final static String USER_AGAIN_PHRASE = "Again";
 
     public UserUI() {
         caesarWorker = new CaesarWorker();
@@ -31,7 +27,7 @@ public class UserUI {
 
     private void showApplicationMenu() {
         System.out.println(WELCOME_MESSAGE);
-        System.out.println("Choose application option");
+        System.out.println(CHOOSE_UI_OPTION);
         for (UserCommands userCommands : UserCommands.values()) {
             String command = String.format("%d -- %s", userCommands.getNumberOfCommand(), userCommands.getDescriptionOfCommand());
             System.out.println(command);
@@ -54,8 +50,8 @@ public class UserUI {
                 int numberOfCommand = readInt();
                 return UserCommands.getCommandByNumber(numberOfCommand);
             } catch (IllegalArgumentException exception) {
-                System.out.println("Number of operation is wrong. \n Reason: " + exception.getMessage());
-                System.out.println("Write 'Again' to trying more");
+                System.out.println(WRONG_NUMBER_OF_OPERATION + exception.getMessage());
+                System.out.println(WRITE_AGAIN);
                 String userInput = scanner.nextLine();
                 if (USER_AGAIN_PHRASE.equalsIgnoreCase(userInput)) {
                     tryAgain = true;
@@ -66,50 +62,50 @@ public class UserUI {
     }
 
     private void encryptingCommand() {
-        System.out.println("Enter filename which contains original text:");
+        System.out.println(ENTER_ORIGINAL_FILENAME);
         String originalText = scanner.nextLine();
-        System.out.println("Enter file name where you want to save encrypting file:");
+        System.out.println(ENTER_TO_ENCRYPT_FILENAME);
         String encryptFile = scanner.nextLine();
-        System.out.println("Enter key for Caesar cipher: ");
+        System.out.println(ENTER_KEY_TO_CIPHER);
         int key = readInt();
 
         try {
             caesarWorker.encrypt(originalText, encryptFile, key);
-            System.out.println("Successful encrypt. Check your file! Address - " + encryptFile);
+            System.out.println(SUCCESS_ENCRYPT_MESSAGE + encryptFile);
         } catch (FileWorkerException | CaesarWorkerException ex) {
-            System.err.println("Error! Reason: " + ex.getMessage());
+            System.err.println(ERROR_EX + ex.getMessage());
             ex.printStackTrace();
         }
     }
 
     private void decryptingCommand() {
-        System.out.println("Enter filename which contains encrypting text: ");
+        System.out.println(ENTER_ENCRYPT_TEXT_FILENAME);
         String encryptFile = scanner.nextLine();
-        System.out.println("Enter file name where you want to save decrypting file: ");
+        System.out.println(ENTER_FILENAME_TO_DECRYPT);
         String originalText = scanner.nextLine();
-        System.out.println("Enter key for Caesar cipher: ");
+        System.out.println(ENTER_KEY_TO_CIPHER);
         int key = readInt();
 
         try {
             caesarWorker.decrypt(encryptFile, originalText, key);
-            System.out.println("Successful decrypt. Check your file! Address - " + originalText);
+            System.out.println(SUCCESS_DECRYPT_MESSAGE + originalText);
         } catch (CaesarWorkerException | FileWorkerException ex) {
-            System.err.println("Error!" + ex.getMessage());
+            System.err.println(ERROR_EX + ex.getMessage());
             ex.printStackTrace();
         }
     }
 
 
     private void bruteForceCommand() {
-        System.out.println("Enter filename which contains encrypting text: ");
+        System.out.println(ENTER_ENCRYPT_TEXT_FILENAME);
         String encryptFile = scanner.nextLine();
-        System.out.println("Enter file name when you want to save decrypting file: ");
+        System.out.println(ENTER_FILENAME_TO_DECRYPT);
         String originalText = scanner.nextLine();
-        System.out.println("Brute force decrypt starting. Please check information in console!");
+        System.out.println(SUCCESS_BRUTEFORCE_DECRYPT_MESSAGE);
         try{
         caesarBruteForce.bruteForceDecrypt(encryptFile, originalText);}
         catch (CaesarWorkerException | FileWorkerException ex){
-            System.err.println("Error!" + ex.getMessage());
+            System.err.println(ERROR_EX + ex.getMessage());
             ex.printStackTrace();
         }
     }
@@ -124,7 +120,7 @@ public class UserUI {
         try {
             return Integer.parseInt(userInput);
         } catch (NumberFormatException ex) {
-            throw new NumberFormatException("Your input not a number");
+            throw new NumberFormatException(NOT_A_NUMBER_MESSAGE);
         }
     }
 

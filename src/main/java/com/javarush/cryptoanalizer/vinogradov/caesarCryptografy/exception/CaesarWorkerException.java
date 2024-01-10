@@ -1,4 +1,4 @@
-package com.javarush.cryptoanalizer.vinogradov.caesarcryptografy.exception;
+package com.javarush.cryptoanalizer.vinogradov.caesarCryptografy.exception;
 
 public class CaesarWorkerException extends RuntimeException {
     String reason;

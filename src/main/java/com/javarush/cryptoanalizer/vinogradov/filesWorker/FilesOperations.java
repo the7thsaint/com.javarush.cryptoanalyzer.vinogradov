@@ -1,6 +1,6 @@
-package com.javarush.cryptoanalizer.vinogradov.filesworker;
+package com.javarush.cryptoanalizer.vinogradov.filesWorker;
 
-import com.javarush.cryptoanalizer.vinogradov.filesworker.exception.FileWorkerException;
+import com.javarush.cryptoanalizer.vinogradov.filesWorker.exception.FileWorkerException;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

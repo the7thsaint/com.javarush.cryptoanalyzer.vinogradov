@@ -1,10 +1,12 @@
-package com.javarush.cryptoanalizer.vinogradov.userinterface;
+package com.javarush.cryptoanalizer.vinogradov.userInterface;
+
+import static com.javarush.cryptoanalizer.vinogradov.constants.PhraseConstants.*;
 
 public enum UserCommands {
-    EXIT(0, "Exit from app"),
-    ENCRYPT(1, "Encrypt text from file with caesar cipher"),
-    DECRYPT(2, "Decrypt text from file with caesar cipher"),
-    BRUTEFORCEDECRYPT(3, "Decrypt caesar cipher with brute force method");
+    EXIT(0, UI_EXIT),
+    ENCRYPT(1, UI_ENCRYPT),
+    DECRYPT(2, UI_DECRYPT),
+    BRUTEFORCEDECRYPT(3, UI_BRUTEFORCEDECRYPT);
 
     private final int numberOfOperation;
     private final String descriptionOfOperation;
@@ -29,7 +31,7 @@ public enum UserCommands {
                 return userCommands;
             }
         }
-        throw new IllegalArgumentException("Wrong number of operation");
+        throw new IllegalArgumentException(WRONG_NUMBER_EX);
     }
 
 

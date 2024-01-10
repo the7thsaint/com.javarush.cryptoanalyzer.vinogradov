@@ -1,7 +1,7 @@
-package com.javarush.cryptoanalizer.vinogradov.caesarcryptografy;
+package com.javarush.cryptoanalizer.vinogradov.caesarCryptografy;
 
-import com.javarush.cryptoanalizer.vinogradov.filesworker.FilenameValidator;
-import com.javarush.cryptoanalizer.vinogradov.filesworker.FilesOperations;
+import com.javarush.cryptoanalizer.vinogradov.filesWorker.FilenameValidator;
+import com.javarush.cryptoanalizer.vinogradov.filesWorker.FilesOperations;
 
 import java.util.ArrayList;
 import java.util.List;
