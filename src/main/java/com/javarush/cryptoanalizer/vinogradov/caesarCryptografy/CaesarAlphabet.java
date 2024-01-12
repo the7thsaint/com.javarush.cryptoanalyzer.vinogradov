@@ -31,14 +31,6 @@ public class CaesarAlphabet {
 
     }
 
-    public CaesarAlphabet() {
-        alphabet = new ArrayList<>(Arrays.asList(RU_WITH_SYMBOLS_ALPHABET));
-        symbolsIndexes = new HashMap<>();
-        for (int i = 0; i < alphabet.size(); i++) {
-            symbolsIndexes.put(alphabet.get(i), i);
-        }
-    }
-
     public CaesarAlphabet(List<String> languageFile) {
         if (chooseTextLanguage(languageFile)) {
             alphabet = new ArrayList<>(Arrays.asList(RU_WITH_SYMBOLS_ALPHABET));
