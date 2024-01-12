@@ -85,11 +85,7 @@ public class CaesarBruteForce {
                 count++;
             }
         }
-        if (count >= decryptWords.length * 0.8) {
-            return true;
-        } else {
-            return false;
-        }
+        return count >= decryptWords.length * 0.8;
     }
 
 
