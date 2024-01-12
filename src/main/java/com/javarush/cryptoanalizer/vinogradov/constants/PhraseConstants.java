@@ -7,8 +7,9 @@ public class PhraseConstants {
     public static final String USER_POSITIVE_ANSWER = "yes";
     public static final String USER_NEGATIVE_ANSWER = "no";
     public static final String RU_WORDS_LIBRARY = "src/main/java/com/javarush/cryptoanalizer/vinogradov/caesarcryptografy/wordslibrary/RussianWordsLibrary.txt";
+    public static final String ENG_WORDS_LIBRARY = "src/main/java/com/javarush/cryptoanalizer/vinogradov/caesarCryptografy/wordsLibrary/EnglishWordsLibrary.txt";
     public static final String CORRECT_BRUTE_FORCE_DECRYPT = "User text is correctly decrypted with key: %d \nText written to the file - %s";
-    public static final String SHOW_DECRYPTED_TEXT = "Decrypted text:\n%s";
+    public static final String SHOW_DECRYPTED_TEXT = "Decrypted text:\n%s\n";
     public static final String SHOW_ANSWER_FOR_USER = "This text is correctly decrypted? Input YES/NO";
     public static final String INCORRECT_USER_ANSWER_FOR_BRUTE_FORCE_DECRYPT = "Incorrect input. Correct input - Yes or No";
     public static final String USE_INCORRECT_FILES = "Used incorrect files ";

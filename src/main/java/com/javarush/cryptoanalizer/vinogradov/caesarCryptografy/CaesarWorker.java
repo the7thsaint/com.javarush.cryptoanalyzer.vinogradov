@@ -12,7 +12,6 @@ public class CaesarWorker {
     private FilesOperations filesOperations;
 
     public CaesarWorker() {
-        this.caesarCipher = new CaesarCipher(new CaesarAlphabet());
         this.filenameValidator = new FilenameValidator();
         this.filesOperations = new FilesOperations();
     }
@@ -22,6 +21,7 @@ public class CaesarWorker {
         filenameValidator.validateForWriting(writableFile);
 
         List<String> readableStrings = filesOperations.readFile(readableFile);
+        caesarCipher = new CaesarCipher(new CaesarAlphabet(readableStrings));
         List<String> dataForEncrypt = new ArrayList<>();
         for (String result : readableStrings) {
             dataForEncrypt.add(caesarCipher.encrypt(result, key));
@@ -34,10 +34,12 @@ public class CaesarWorker {
         filenameValidator.validateForWriting(writableFile);
 
         List<String> readableStrings = filesOperations.readFile(readableFile);
+        caesarCipher = new CaesarCipher(new CaesarAlphabet(readableStrings));
         List<String> decryptingData = new ArrayList<>();
         for (String result : readableStrings) {
             decryptingData.add(caesarCipher.decrypt(result, key));
         }
         filesOperations.writeFile(writableFile, decryptingData);
     }
+
 }

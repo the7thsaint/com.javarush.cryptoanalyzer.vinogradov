@@ -12,16 +12,13 @@ import java.util.Scanner;
 import static com.javarush.cryptoanalizer.vinogradov.constants.PhraseConstants.*;
 
 public class CaesarBruteForce {
-    private final CaesarCipher caesarCipher;
+    private CaesarCipher caesarCipher;
     private final FilenameValidator filenameValidator;
     private final FilesOperations filesOperations;
-    private final CaesarAlphabet alphabet;
-
+    private CaesarAlphabet alphabet;
 
 
     public CaesarBruteForce() {
-        this.alphabet = new CaesarAlphabet();
-        this.caesarCipher = new CaesarCipher(alphabet);
         this.filesOperations = new FilesOperations();
         this.filenameValidator = new FilenameValidator();
     }
@@ -33,6 +30,8 @@ public class CaesarBruteForce {
         StringBuilder stringBuilder = new StringBuilder();
         try {
             List<String> readableStrings = filesOperations.readFile(encryptFilename);
+            alphabet = new CaesarAlphabet(readableStrings);
+            caesarCipher = new CaesarCipher(alphabet);
             for (String textString : readableStrings) {
                 stringBuilder.append(textString);
             }
@@ -79,6 +78,8 @@ public class CaesarBruteForce {
         int count = 0;
         for (String splitString : decryptWords) {
             if (filesOperations.readLibraryFile(RU_WORDS_LIBRARY).contains(splitString)) {
+                count++;
+            } else if (filesOperations.readLibraryFile(ENG_WORDS_LIBRARY).contains(splitString)) {
                 count++;
             }
         }
