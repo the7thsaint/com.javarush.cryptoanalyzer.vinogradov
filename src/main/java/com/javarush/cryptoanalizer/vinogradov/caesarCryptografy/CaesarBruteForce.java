@@ -58,11 +58,11 @@ public class CaesarBruteForce {
             successValidate = true;
         }
 
-        if(successValidate) {
+        if (successValidate) {
             System.out.printf(SHOW_DECRYPTED_TEXT, bruteForceDecryptText);
             System.out.println(SHOW_ANSWER_FOR_USER);
             String userAnswer = scanner.nextLine();
-            switch (userAnswer.toLowerCase()){
+            switch (userAnswer.toLowerCase()) {
                 case USER_POSITIVE_ANSWER -> {
                     return true;
                 }
@@ -79,11 +79,16 @@ public class CaesarBruteForce {
         String[] decryptWords = bruteForceDecryptText.replaceAll(BRUTE_FORCE_SEARCH_REGEX, "").split(BRUTE_FORCE_SPLIT_REGEX);
         int count = 0;
         for (String splitString : decryptWords) {
-            if (filesOperations.readLibraryFile(RU_WORDS_LIBRARY).contains(splitString)) {
-                count++;
-            } else if (filesOperations.readLibraryFile(ENG_WORDS_LIBRARY).contains(splitString)) {
-                count++;
+            if (splitString.matches(CHOOSE_LANGUAGE_REGEX)) {
+                if (filesOperations.readLibraryFile(RU_WORDS_LIBRARY).contains(splitString)) {
+                    count++;
+                }
+            } else {
+                if (filesOperations.readLibraryFile(ENG_WORDS_LIBRARY).contains(splitString)) {
+                    count++;
+                }
             }
+
         }
         return count >= decryptWords.length * 0.8;
     }
