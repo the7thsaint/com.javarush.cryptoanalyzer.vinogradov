@@ -32,7 +32,7 @@ public class CaesarAlphabet {
     }
 
     public CaesarAlphabet(List<String> languageFile) {
-        if (chooseTextLanguage(languageFile)) {
+        if (isRussianLanguage(languageFile)) {
             alphabet = new ArrayList<>(Arrays.asList(RU_WITH_SYMBOLS_ALPHABET));
         } else {
             alphabet = new ArrayList<>(Arrays.asList(EN_WITH_SYMBOLS_ALPHABET));
@@ -61,8 +61,8 @@ public class CaesarAlphabet {
         return symbolsIndexes.size();
     }
 
-    private boolean chooseTextLanguage(List<String> readedFile) {
-        return readedFile.get(0).matches("[а-яёА-ЯЁ]+");
+    private boolean isRussianLanguage(List<String> readedFile) {
+        return readedFile.get(0).matches(CHOOSE_LANGUAGE_REGEX);
     }
 
 }
