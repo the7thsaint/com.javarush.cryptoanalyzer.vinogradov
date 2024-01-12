@@ -37,7 +37,7 @@ public class CaesarBruteForce {
             }
             for (int i = 0; i < alphabet.getAlphabetSize(); i++) {
                 String decryptString = caesarCipher.decrypt(stringBuilder.toString(), i);
-                if (userValidateText(decryptString)) {
+                if (isUserTextValid(decryptString)) {
                     List<String> resultOfDecrypt = new ArrayList<>();
                     resultOfDecrypt.add(decryptString);
                     filesOperations.writeFile(decryptingFilename, resultOfDecrypt);
@@ -51,30 +51,32 @@ public class CaesarBruteForce {
 
     }
 
-    private boolean userValidateText(String bruteForceDecryptText) {
+    private boolean isUserTextValid(String bruteForceDecryptText) {
         Scanner scanner = new Scanner(System.in);
         boolean successValidate = false;
-        if ((libraryContains(bruteForceDecryptText))) {
+        if ((isLibraryContains(bruteForceDecryptText))) {
             successValidate = true;
         }
 
-        while (successValidate) {
+        if(successValidate) {
             System.out.printf(SHOW_DECRYPTED_TEXT, bruteForceDecryptText);
             System.out.println(SHOW_ANSWER_FOR_USER);
             String userAnswer = scanner.nextLine();
-            if (userAnswer.equalsIgnoreCase(USER_POSITIVE_ANSWER)) {
-                return true;
-            } else if (userAnswer.equalsIgnoreCase(USER_NEGATIVE_ANSWER)) {
-                return false;
-            } else {
-                System.out.println(INCORRECT_USER_ANSWER_FOR_BRUTE_FORCE_DECRYPT);
+            switch (userAnswer.toLowerCase()){
+                case USER_POSITIVE_ANSWER -> {
+                    return true;
+                }
+                case USER_NEGATIVE_ANSWER -> {
+                    return false;
+                }
+                default -> System.out.println(INCORRECT_USER_ANSWER_FOR_BRUTE_FORCE_DECRYPT);
             }
         }
         return false;
     }
 
-    private boolean libraryContains(String bruteForceDecryptText) {
-        String[] decryptWords = bruteForceDecryptText.replaceAll("[^A-Za-zА-Яа-яё.\\s]+", "").split("\\s+");
+    private boolean isLibraryContains(String bruteForceDecryptText) {
+        String[] decryptWords = bruteForceDecryptText.replaceAll(BRUTE_FORCE_SEARCH_REGEX, "").split(BRUTE_FORCE_SPLIT_REGEX);
         int count = 0;
         for (String splitString : decryptWords) {
             if (filesOperations.readLibraryFile(RU_WORDS_LIBRARY).contains(splitString)) {

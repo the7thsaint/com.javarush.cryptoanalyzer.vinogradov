@@ -41,6 +41,9 @@ public class PhraseConstants {
     public final static String SUCCESS_DECRYPT_MESSAGE = "Successful decrypt. Check your file! Address - ";
     public final static String SUCCESS_BRUTEFORCE_DECRYPT_MESSAGE = "Brute force decrypt starting. Please check information in console!";
     public final static String NOT_A_NUMBER_MESSAGE = "Your input not a number";
+    public final static String BRUTE_FORCE_SEARCH_REGEX = "[^A-Za-zА-Яа-яё.\\s]+";
+    public final static String BRUTE_FORCE_SPLIT_REGEX = "\\s+";
+    public final static String CHOOSE_LANGUAGE_REGEX = "[а-яёА-ЯЁ]+";
 
 
 }
