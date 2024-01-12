@@ -15,6 +15,7 @@ public class CaesarAlphabet {
     private final List<Character> alphabet;
     private final Map<Character, Integer> symbolsIndexes;
     private static final Character[] RU_WITH_SYMBOLS_ALPHABET;
+    private static final Character[] EN_WITH_SYMBOLS_ALPHABET;
 
     static {
 
@@ -23,11 +24,27 @@ public class CaesarAlphabet {
                 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
                 'ъ', 'ы', 'ь', 'э', 'ю', 'я', '.', ',', '«', '»', '"', '\'', ':', '!', '?', ' ', '\n'
         };
+        EN_WITH_SYMBOLS_ALPHABET = new Character[]{
+                'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+                'u', 'v', 'w', 'x', 'y', 'z', '.', ',', '«', '»', '"', '\'', ':', '!', '?', ' ', '\n'
+        };
 
     }
 
     public CaesarAlphabet() {
         alphabet = new ArrayList<>(Arrays.asList(RU_WITH_SYMBOLS_ALPHABET));
+        symbolsIndexes = new HashMap<>();
+        for (int i = 0; i < alphabet.size(); i++) {
+            symbolsIndexes.put(alphabet.get(i), i);
+        }
+    }
+
+    public CaesarAlphabet(List<String> languageFile) {
+        if (chooseTextLanguage(languageFile)) {
+            alphabet = new ArrayList<>(Arrays.asList(RU_WITH_SYMBOLS_ALPHABET));
+        } else {
+            alphabet = new ArrayList<>(Arrays.asList(EN_WITH_SYMBOLS_ALPHABET));
+        }
         symbolsIndexes = new HashMap<>();
         for (int i = 0; i < alphabet.size(); i++) {
             symbolsIndexes.put(alphabet.get(i), i);
@@ -50,6 +67,10 @@ public class CaesarAlphabet {
 
     public int getAlphabetSize() {
         return symbolsIndexes.size();
+    }
+
+    private boolean chooseTextLanguage(List<String> readedFile) {
+        return readedFile.get(0).matches("[а-яёА-ЯЁ]+");
     }
 
 }
