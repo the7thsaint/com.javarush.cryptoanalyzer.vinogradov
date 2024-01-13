@@ -61,7 +61,7 @@ public class CaesarAlphabet {
         return symbolsIndexes.size();
     }
 
-    protected boolean isRussianLanguage(List <String> readedFile) {
+    private boolean isRussianLanguage(List <String> readedFile) {
         return readedFile.get(0).matches(CHOOSE_LANGUAGE_REGEX);
     }
 
